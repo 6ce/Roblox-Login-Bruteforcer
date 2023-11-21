@@ -23,9 +23,9 @@ def DecodeMetadata(MetadataB64: str):
     return JSON.loads(Base64.b64decode(MetadataB64).decode("utf-8"))
 
 def StartLogin():
-    print("[+] Generating CSRF Token")
+    print("[MAGNET] Generating CSRF Token")
     CSRF = GetCSRF()
-    print(f"[+] Generated CSRF Token: {CSRF}")
+    print(f"[MAGNET] Generated CSRF Token: {CSRF}")
     Headers = {
         "Content-Type": "application/json;charset=UTF-8",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
@@ -36,26 +36,27 @@ def StartLogin():
         "cvalue": Username,
         "password": Password
     }
-    print("[+] Starting login process")
+    print("[MAGNET] Starting login process")
     Response = Requests.post(url=LOGIN_API, headers=Headers, json=Data)
     ResHeaders = Response.headers
 
     if Response.status_code == 429:
-        print("[+] Ratelimited. Waiting a minute to retry.")
+        print("[MAGNET] Ratelimited. Waiting a minute to retry.")
         Time.sleep(60)
         return StartLogin()
 
     ChallengeId = ResHeaders["rblx-challenge-id"]
     MetadataB64 = ResHeaders["rblx-challenge-metadata"]
-    print(f"[+] FunCaptcha Challenge ID: {ChallengeId}")
+    print(f"[MAGNET] FunCaptcha Challenge ID: {ChallengeId}")
 
     Metadata = DecodeMetadata(MetadataB64)
     DataExchange = Metadata["dataExchangeBlob"]
     Blob = {"data[blob]": DataExchange}
+    print(f"[MAGNET] FunCaptcha DataExchange: {DataExchange}")
 
     TaskId = Funcaptcha.GetTask(Url=ROBLOX_URL, JSUrl=JS_URL, Key=ROBLOX_KEY, Blob=Blob)
-    print(f"[+] FunCaptcha TaskId: {TaskId}")
+    print(f"[MAGNET] FunCaptcha TaskId: {TaskId}")
     Result = Funcaptcha.GetResult(TaskId)
-    print(f"[+] FunCaptcha Task Result: {str(Result)}")
+    print(f"[MAGNET] FunCaptcha Task Result: {str(Result)}")
     
 StartLogin()
