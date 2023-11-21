@@ -13,7 +13,7 @@ Headers = {
 
 class Funcaptcha:
     def __init__(self):
-        print("[+] Funcaptcha Solver Loaded")
+        print("[MAGNET] Funcaptcha Solver Loaded")
 
     def GetTask(self, Url: str, JSUrl: str, Key: str, Blob: dict):
         Data = {
