@@ -1,7 +1,7 @@
 import requests as Requests
 import json as JSON
 
-CAP_API_KEY = "IMPORT_CAPSOLVER_API_KEY_HERE"
+CAP_API_KEY = "" # import capsolver api key here
 CAP_BAL_API = "https://api.capsolver.com/getBalance"
 CAP_CREATE_API = "https://api.capsolver.com/createTask"
 CAP_RESULT_API = "https://api.capsolver.com/getTaskResult"
