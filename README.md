@@ -1,5 +1,5 @@
 # Roblox-Login-Bruteforcer
-Currently not working, will update when it is :)
+Currently not working, will update this README when it is :)
 
 # Installation
 
