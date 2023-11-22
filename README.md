@@ -9,7 +9,7 @@ pip install requests
 
 # Setup
 
-Make sure to import your [CapSolver](https://capsolver.com) API Key in "solver.py"
+Import your [CapSolver](https://capsolver.com) API Key in "solver.py"
 
 After, head to "roblox.py" and import your "RBXEventTrackerV2" cookie from your browser, and your desired username and password
 
