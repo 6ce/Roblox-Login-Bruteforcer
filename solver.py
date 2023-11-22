@@ -13,9 +13,9 @@ Headers = {
 
 class Funcaptcha:
     def __init__(self):
-        print("[MAGNET] Funcaptcha Solver Loaded")
+        print("[+] Funcaptcha Solver Loaded")
 
-    def GetTask(self, Url: str, JSUrl: str, Key: str, Blob: dict):
+    def GetTask(self, Url: str, JSUrl: str, Key: str, Blob: dict) -> dict:
         Data = {
             "clientKey": CAP_API_KEY,
             "task": {
@@ -30,7 +30,7 @@ class Funcaptcha:
         Response = Requests.post(url=CAP_CREATE_API, headers=Headers, data=Data)
         return Response.json()["taskId"]
 
-    def GetResult(self, TaskId: str):
+    def GetResult(self, TaskId: str) -> dict:
         Data = {
             "clientKey": CAP_API_KEY,
             "taskId": TaskId
